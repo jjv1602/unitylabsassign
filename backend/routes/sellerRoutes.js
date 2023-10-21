@@ -4,9 +4,9 @@ const { protect } = require('../middlewares/authMiddleware');
 const router=express.Router()
 
 // To get list of all sellers
-router.route('/create-catalog').post(createCatalog);  
+router.route('/create-catalog').post(protect,createCatalog);  
 
 // To get the catalog by seller
-router.route('/seller/orders').get(getOrders);
+router.route('/seller/orders').get(protect,getOrders);
 
 module.exports=router;

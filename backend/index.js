@@ -19,7 +19,7 @@ app.use('/api/auth',authRoutes);
 app.use('/api/buyer',buyerRoutes);   
 
 // sellerRoutes 
-app.use('/api/buyer',sellerRoutes);   
+app.use('/api/seller',sellerRoutes);   
 
 const { errorHandler, notFound } = require('./middlewares/errorMiddlewares');
 app.use(notFound)

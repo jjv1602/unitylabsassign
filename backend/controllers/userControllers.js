@@ -4,7 +4,6 @@ const User = require("../models/userModels");
 const generateToken  = require('../util/generateToken');
 
 const registerUser = asyncHandler(async (req, res) => {
-
     // taking name,email and pwd from user
     const { username, password,type } = req.body;
 
@@ -17,9 +16,9 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // Calling userModels.js file
     const user = await User.create({
-        name,
-        email,
-        password,
+        username:username,
+        password:password,
+        type_of_user:type
     });
 
     // if user is successfully created that is the input follows the schema then this condition ->if(user)
@@ -27,9 +26,10 @@ const registerUser = asyncHandler(async (req, res) => {
         // send response in json file
         res.status(201).json({
             _id: user._id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id),    //json web token see video 10 from 30:00
+            username: user.username,
+            password: user.password,
+            type:user.type_of_user,
+            token: generateToken(user._id),    //json web token 
         });
     } else {
         res.status(400);
@@ -39,17 +39,17 @@ const registerUser = asyncHandler(async (req, res) => {
 
 
 const authUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
   
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username });
       // .matchPassword is a function i.e is declared in userModel.js file which would decrypt the password
     if (user && (await user.matchPassword(password))) {
       res.json({
         _id: user._id,
-        name: user.name,
-        email: user.email,
-        token: generateToken(user._id), //json web token see video 10 from 30:00
-        pic:user.pic,
+        username: user.username,
+        password: user.password,
+        type:user.type_of_user,
+        token: generateToken(user._id),    //json web token 
       });
     } else {
       res.status(401);

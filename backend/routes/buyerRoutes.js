@@ -12,4 +12,5 @@ router.route('/seller-catalog/:seller_id').get(protect,getCatalog);
 // To create order 
 router.route('/create-order/:seller_id').post(protect,createOrder);
 
+
 module.exports=router;
