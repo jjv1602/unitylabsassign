@@ -1,5 +1,5 @@
 const express=require('express');
-const { createCatalog, getOrders} = require('../Controllers/eventController');
+const { createCatalog, getOrders} = require('../Controllers/sellerController');
 const { protect } = require('../middlewares/authMiddleware');
 const router=express.Router()
 
