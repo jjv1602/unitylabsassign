@@ -11,7 +11,6 @@ const createCatalog = asyncHandler(async (req, res) => {
     // here in routes first token authentication is there and protect would give user_id
     const sender = await User.findById(req.user._id);
     const { product } = req.body;
-    console.log(product);
     let product_list = product;
     var savedProducts = [];
     var savedCatalog;
@@ -30,7 +29,7 @@ const createCatalog = asyncHandler(async (req, res) => {
         const savedProduct = await product.save();
         savedProducts.push({product:savedProduct._id});
       }
-      console.log(savedProducts);
+    
       // Then saving product in catalog
       const catalog = await Cat.create({
         creator_id: sender._id,

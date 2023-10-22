@@ -11,7 +11,6 @@ const getSellerList = asyncHandler(async (req, res) => {
   try {
     // here in routes protect is there and protect would give user_id
     const sellers = await User.find({ type_of_user: 'seller' });
-    console.log(sellers);
     res.status(200).json(sellers);
   }
   catch (error) {
@@ -56,7 +55,6 @@ const createOrder = asyncHandler(async (req, res) => {
           throw new Error("Wrong Product _id ");
         }
       }
-      console.log(result);
       res.status(200).json(result);
     } else {
       throw new Error("Seller cannot place order");
