@@ -7,7 +7,7 @@ const router=express.Router()
 router.route('/list-of-sellers').get( getSellerList);  
 
 // To get the catalog by seller
-router.route('/seller-catalog/:seller_id').get(protect,getCatalog);
+router.route('/seller-catalog/:seller_id').get(getCatalog);
 
 // To create order 
 router.route('/create-order/:seller_id').post(protect,createOrder);

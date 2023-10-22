@@ -7,6 +7,6 @@ const router=express.Router()
 router.route('/create-catalog').post(protect,createCatalog);  
 
 // To get the catalog by seller
-router.route('/seller/orders').get(protect,getOrders);
+router.route('/orders').get(protect,getOrders);
 
 module.exports=router;

@@ -10,8 +10,6 @@ const productSchema = mongoose.Schema(
             type: Number,
             required: true,
         },
-        catalog_id:{type: mongoose.Schema.Types.ObjectId, ref: 'Cat'},
-
     },
     {
         timestamps: true,

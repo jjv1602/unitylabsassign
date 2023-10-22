@@ -13,7 +13,7 @@ const createCatalog = asyncHandler(async (req, res) => {
     const { product } = req.body;
     console.log(product);
     let product_list = product;
-    let savedProducts = [];
+    var savedProducts = [];
     var savedCatalog;
     if (sender && sender.type_of_user === 'seller') {
 
@@ -22,25 +22,26 @@ const createCatalog = asyncHandler(async (req, res) => {
       if (catexist) {
         throw new Error("Catalog already exists");
       }
-      Cat.create({ creator_id: sender._id, })
 
       // First Saving each product in Product Table 
       for (const el of product_list) {
         // Create a new product document for each name and save it to the database
         const product = await Product.create({ name: el.name, price: el.price });
         const savedProduct = await product.save();
-        savedProducts.push(savedProduct._id);
+        savedProducts.push({product:savedProduct._id});
       }
-
+      console.log(savedProducts);
       // Then saving product in catalog
       const catalog = await Cat.create({
-        creator_id: sender,
+        creator_id: sender._id,
         products: savedProducts
       })
       savedCatalog = await catalog.save();
+      res.status(200).json(savedCatalog);
+    }else{
+      throw new Error("Buyer cannot create catalog");
     }
-    console.log(savedCatalog);
-    res.status(200).json(savedCatalog);
+    
   }
   catch (error) {
     res.status(400).json(error.message);
