@@ -25,9 +25,6 @@ npm start
 # Server API is running at http://localhost:5000 (http://localhost:5000 by default)
 ```
 
- 
-
-
 
 
 ## Technology Used
@@ -36,6 +33,13 @@ npm start
 * Node.js
 * Express
 
+## Checklist
+- [x] <b>JWT TOKEN</b>- Implemented JSON Web Token
+- [x] <b>Protected and Secure Routes</b> - Without a token user would not be able to access Seller and Buyer Information
+- [x] <b>User, Seller, and Buyer API Routes completed</b>
+- [x] <b>Error and Middleware Handling</b> 
 
+## Architecture Diagram
+  <img src="/Images/model_architecture_diagram.jpg" width="80%" height="80%">
     
 
